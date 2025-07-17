@@ -1,0 +1,43 @@
+name: Playwright API Tests
+permissions:
+  contents: read
+  actions: read
+  checks: write
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Create results directory
+        run: mkdir -p results
+
+      - name: Run Playwright tests
+        run: npx playwright test
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: junit-test-results
+          path: results/test-results.xml
+
+      - name: Publish Test Results
+        if: always()
+        uses: mikepenz/action-junit-report@v5
+        with:
+          report_paths: 'results/test-results.xml'
+          include_passed: true
