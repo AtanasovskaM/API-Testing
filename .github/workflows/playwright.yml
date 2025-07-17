@@ -32,6 +32,6 @@ jobs:
       # Optional: Publish test results to GitHub Actions UI
       - name: Publish Test Results
         if: always()
-        uses: EnricoMi/publish-unit-test-result-action@v2
+        uses: mikepenz/action-junit-report@v5
         with:
           files: results/test-results.xml
