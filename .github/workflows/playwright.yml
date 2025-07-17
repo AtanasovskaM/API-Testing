@@ -9,7 +9,7 @@ permissions:
   contents: read
   actions: read
   checks: write
-  
+
 jobs:
   test:
     timeout-minutes: 60
@@ -27,7 +27,7 @@ jobs:
         run: mkdir -p results
 
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --reporter=junit
 
       - uses: actions/upload-artifact@v4
         if: always()
