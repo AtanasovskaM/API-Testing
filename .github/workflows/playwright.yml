@@ -29,15 +29,27 @@ jobs:
       - name: Run Playwright tests
         run: npx playwright test
 
-      - uses: actions/upload-artifact@v4
-        if: always()
+      - name: Upload HTML report as artifact
+        uses: actions/upload-artifact@v4
         with:
-          name: junit-test-results
-          path: results/test-results.xml
+          name: playwright-report
+          path: playwright-report
 
-      - name: Publish Test Results
+      - name: Report test results to GitHub Checks
+        uses: dorny/test-reporter@v1
         if: always()
-        uses: mikepenz/action-junit-report@v5
         with:
-          report_paths: "results/test-results.xml"
-          include_passed: true
+          name: Playwright Test
+          artifact: test-results                    
+          path: results/junit.xml                       
+          reporter: jest-junit                          
+          fail-on-error: false 
+
+
+
+
+ 
+
+  
+
+ 
