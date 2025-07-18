@@ -7,11 +7,24 @@ import {
 } from "../../helpers/fixtures/books";
 
 test.describe("GET operation - books", () => {
-  test("Get all books", async ({ request }) => {
+  test("Get all books and verify it returns an array", async ({ request }) => {
     const response = await request.get("/api/v1/Books");
     expect(response.ok()).toBeTruthy();
     expect(response.status()).toBe(200);
     expect(Array.isArray(await response.json())).toBeTruthy();
+  });
+
+  test("Get all books and verify header content type", async ({ request }) => {
+    const response = await request.get("/api/v1/Books", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    expect(response.ok()).toBeTruthy();
+    expect(response.status()).toBe(200);
+    expect(Array.isArray(await response.json())).toBeTruthy();
+    expect(response.headers()["content-type"]).toContain("application/json");
   });
 
   test("Get book by valid id", async ({ request }) => {

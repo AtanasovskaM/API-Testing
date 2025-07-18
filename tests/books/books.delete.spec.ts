@@ -3,9 +3,6 @@ import {
   alphanumBookId,
   bookId,
   invalidNumBookId,
-  newBook,
-  newBookEmpty,
-  newBookInvalidDate,
 } from "../../helpers/fixtures/books";
 
 test.describe("DELETE operation - books", () => {
