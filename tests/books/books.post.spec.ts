@@ -2,6 +2,7 @@ import { test, expect } from "@playwright/test";
 import {
   newBook,
   newBookEmpty,
+  newBookExtra,
   newBookInvalidDate,
   newBookLongTitleDesc,
   newBookStringId,
@@ -22,9 +23,13 @@ test.describe("POST operation - books", () => {
     expect(responseBody).toEqual(newBook);
   });
 
-  test("Create new book with empty fields", async ({ request }) => {
-    const response = await request.post("/api/v1/Books", { data: "{}" });
+  test("Create new book with non existing fields", async ({ request }) => {
+    const response = await request.post("/api/v1/Authors", {
+      data: newBookExtra,
+    });
     const responseBody = await response.json();
+    expect(response.status()).toBe(200);
+    expect(responseBody).not.toHaveProperty("extra");
   });
 
   test("Create new book with invalid date", async ({ request }) => {
