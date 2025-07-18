@@ -39,8 +39,7 @@ jobs:
         uses: dorny/test-reporter@v1
         if: always()
         with:
-          name: Playwright Test
-          artifact: test-results                    
+          name: Playwright Test            
           path: results/junit.xml                       
           reporter: jest-junit                          
           fail-on-error: false 

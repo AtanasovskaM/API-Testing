@@ -46,9 +46,9 @@ export const updateAuthor = {
 
 export const invalidUpdateAuthor = {
   id: randFood(),
-  title: randFood(),
-  description: randCatchPhrase(),
-  pageCount: randNumber({ min: 1, max: 100 }),
+  idBook: randFood(),
+  firstName: randNumber({ min: 1, max: 100 }),
+  lastName: randNumber({ min: 1, max: 100 }),
 };
 
 export const newAuthorEmpty = {};
