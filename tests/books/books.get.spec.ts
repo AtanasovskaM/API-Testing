@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import {
   alphanumBookId,
   bookId,
-  invalidId,
+  invalidNumBookId,
   negativeBookId,
 } from "../../helpers/fixtures/books";
 
@@ -21,7 +21,7 @@ test.describe("GET operation - books", () => {
   });
 
   test("Get book by invalid id", async ({ request }) => {
-    const response = await request.get(`/api/v1/Books/${invalidId}`);
+    const response = await request.get(`/api/v1/Books/${invalidNumBookId}`);
     expect(response.status()).toBe(404);
     const responseBody = await response.json();
     expect(responseBody).toHaveProperty("title", "Not Found");

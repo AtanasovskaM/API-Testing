@@ -39,5 +39,5 @@ jobs:
         if: always()
         uses: mikepenz/action-junit-report@v5
         with:
-          report_paths: 'results/test-results.xml'
+          report_paths: "results/test-results.xml"
           include_passed: true

@@ -1,4 +1,10 @@
-import { randFood, randCatchPhrase, randNoun, randNumber, randTextRange } from "@ngneat/falso";
+import {
+  randFood,
+  randCatchPhrase,
+  randNoun,
+  randNumber,
+  randTextRange,
+} from "@ngneat/falso";
 
 export const newBook = {
   id: randNumber({ min: 1, max: 100 }),
@@ -45,11 +51,26 @@ export const newBookTitleDescNumbers = {
   publishDate: "2025-07-16T21:46:27.779Z",
 };
 
+export const updateBook = {
+  title: randFood(),
+  description: randCatchPhrase(),
+  excerpt: randNoun(),
+};
+
+export const invalidUpdateBook = {
+  id: randFood(),
+  title: randFood(),
+  description: randCatchPhrase(),
+  pageCount: randNumber({ min: 1, max: 100 }),
+};
+
 export const newBookEmpty = {};
 
 export const bookId = randNumber({ min: 1, max: 100 });
 
-export const invalidId = randNumber({ min: 888888, max: 999999 });
+export const invalidNumBookId = randNumber({ min: 888888, max: 999999 });
+
+export const stringBookId = randFood();
 
 export const alphanumBookId = randNoun() + randNumber({ min: 1, max: 100 });
 
