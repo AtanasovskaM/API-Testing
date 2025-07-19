@@ -35,3 +35,14 @@ This command will execute the Playwright tests defined in the tests directory.
 ```bash
 npm run report
 ```
+
+### CI/CD with GitHub Actions
+
+This project uses GitHub Actions for continuous integration. The workflow runs:
+- On every push to `main` or `develop`
+- On all pull requests
+
+It executes:
+- API tests using Playwright
+- Generates test reports
+- Publishes results to GitHub Actions summary in Playwright Tests Report

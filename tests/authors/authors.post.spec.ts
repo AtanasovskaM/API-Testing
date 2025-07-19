@@ -6,6 +6,7 @@ import {
   newAuthorLongFirstLastName,
   newAuthorFirstLastNameNumbers,
   newAuthorExtra,
+  newAuthorMissingFields,
 } from "../../helpers/fixtures/authors";
 
 test.describe("POST operation - authors", () => {
@@ -27,6 +28,16 @@ test.describe("POST operation - authors", () => {
     expect(response.status()).toBe(415);
     const responseBody = await response.json();
     expect(responseBody).toHaveProperty("title", "Unsupported Media Type");
+  });
+
+    test("Create new author with missing fields", async ({ request }) => {
+    const response = await request.post("/api/v1/Authors", { data: newAuthorMissingFields });
+    expect(response.status()).toBe(200);
+    const responseBody = await response.json();
+    expect(responseBody).toHaveProperty("id", 0)
+    expect(responseBody).toHaveProperty("idBook", newAuthorMissingFields.idBook)
+    expect(responseBody).toHaveProperty("firstName", newAuthorMissingFields.firstName)
+    expect(responseBody).toHaveProperty("lastName", null)
   });
 
   test("Create new author with non existing fields", async ({ request }) => {

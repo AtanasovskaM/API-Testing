@@ -5,3 +5,5 @@ playwright/.cache/
 results/
 data/
 trace/
+playwright-report/index.html
+
