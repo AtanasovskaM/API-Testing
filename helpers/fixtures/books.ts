@@ -4,7 +4,6 @@ import {
   randNoun,
   randNumber,
   randTextRange,
-  randFirstName,
 } from "@ngneat/falso";
 
 export const newBook = {
@@ -60,6 +59,11 @@ export const newBookTitleDescNumbers = {
   pageCount: randNumber({ min: 1, max: 100 }),
   excerpt: randNoun(),
   publishDate: "2025-07-16T21:46:27.779Z",
+};
+
+export const newBookMissingFields = {
+  description: randFood(),
+  pageCount: randNumber({ min: 1, max: 100 }),
 };
 
 export const updateBook = {
