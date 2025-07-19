@@ -1,6 +1,5 @@
 import {
   randFood,
-  randCatchPhrase,
   randNoun,
   randNumber,
   randTextRange,
@@ -21,6 +20,11 @@ export const newAuthorExtra = {
   firstName: randFirstName(),
   lastName: randLastName(),
   extra: randLastName(),
+};
+
+export const newAuthorMissingFields = {
+  idBook: randNumber({ min: 1, max: 100 }),
+  firstName: randFirstName(),
 };
 
 export const newAuthorLongFirstLastName = {

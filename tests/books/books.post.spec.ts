@@ -5,6 +5,7 @@ import {
   newBookExtra,
   newBookInvalidDate,
   newBookLongTitleDesc,
+  newBookMissingFields,
   newBookStringId,
   newBookTitleDescNumbers,
 } from "../../helpers/fixtures/books";
@@ -30,6 +31,20 @@ test.describe("POST operation - books", () => {
     const responseBody = await response.json();
     expect(response.status()).toBe(200);
     expect(responseBody).not.toHaveProperty("extra");
+  });
+
+  test("Create new book with missing fields", async ({ request }) => {
+    const response = await request.post("/api/v1/Books", {
+      data: newBookMissingFields,
+    });
+    const responseBody = await response.json();
+    expect(response.status()).toBe(200);
+    expect(responseBody).toHaveProperty("id", 0);
+    expect(responseBody).toHaveProperty("title", null);
+    expect(responseBody).toHaveProperty("description", newBookMissingFields.description);
+    expect(responseBody).toHaveProperty("pageCount", newBookMissingFields.pageCount);
+    expect(responseBody).toHaveProperty("excerpt", null);
+    expect(responseBody).toHaveProperty("publishDate", "0001-01-01T00:00:00");
   });
 
   test("Create new book with invalid date", async ({ request }) => {
